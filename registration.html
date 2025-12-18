@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration | OMR Competitor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background-color: #007bff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav h1 { margin: 0; font-size: 1.5em; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    nav a:hover { text-decoration: underline; }
+
+    .form-container {
+      padding: 30px;
+      margin: auto;
+      width: 90%;
+      max-width: 400px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      border: 1px solid #007bff;
+      margin-top: 40px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>OMR Competitor</h1>
+    <div>
+      <a href="update.html">Update</a>
+      <a href="registration.html">Registration</a>
+      <a href="exam.html">Exam</a>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h2>রেজিস্ট্রেশন ফর্ম</h2>
+
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="institute" placeholder="Institute Name">
+    <input type="text" id="phone" placeholder="Phone Number">
+    <input type="text" id="bkash" placeholder="bKash Number">
+    <input type="text" id="classSubject" placeholder="Class And Subject">
+
+    <button onclick="sendRegistration()">Send</button>
+  </div>
+
+  <script>
+    function sendRegistration() {
+      const name = document.getElementById('name').value;
+      const inst = document.getElementById('institute').value;
+      const phone = document.getElementById('phone').value;
+      const bkash = document.getElementById('bkash').value;
+      const classSubject = document.getElementById('classSubject').value;
+
+      if (!name || !inst || !phone || !bkash || !classSubject) {
+        alert("সব ঘর পূরণ করুন!");
+        return;
+      }
+
+      const message =
+`নতুন রেজিস্ট্রেশন:
+👤 নাম: ${name}
+🏫 প্রতিষ্ঠান: ${inst}
+📞 ফোন: ${phone}
+💳 বিকাশ: ${bkash}
+📘 ক্লাস ও বিষয়: ${classSubject}`;
+
+      const whatsappNumber = "+8801989615778";
+
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank");
+      alert("তথ্য পাঠানো হয়েছে!");
+    }
+  </script>
+</body>
+</html>

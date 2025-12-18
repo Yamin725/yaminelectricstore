@@ -1,0 +1,99 @@
+<!-- ===== contact.html ===== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Yamin Electric Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#d4af37}
+
+/* NAVBAR */
+nav{background:#000}
+.nav{
+  max-width:1300px;
+  margin:auto;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.logo{
+  color:#d4af37;
+  font-size:20px;
+  font-weight:bold;
+}
+.nav a{
+  color:#d4af37;
+  text-decoration:none;
+  font-size:14px;
+}
+.nav a:hover{text-decoration:underline}
+
+/* CONTACT */
+.container{
+  max-width:500px;
+  margin:40px auto;
+  background:#fff;
+  padding:20px;
+}
+h2{text-align:center;margin-bottom:20px}
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #ccc;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#000;
+  color:#d4af37;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav">
+    <div class="logo">Yamin Electric Store</div>
+    <a href="index.html">Home</a>
+    <a href="bulb.html">Bulb</a>
+    <a href="tools.html">Tools</a>
+    <a href="accessories.html">Accessories</a>
+    <a href="cold-hot-item.html">Cold & Hot</a>
+    <a href="higher-product.html">Higher Product</a>
+    <a href="manual-gear.html">Manual Gear</a>
+    <a href="bell.html">Bell</a>
+    <a href="rechargeable.html">Rechargeable</a>
+    <a href="other.html">Other</a>
+    <a href="order.html">Order</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Contact Us</h2>
+  <input type="text" id="name" placeholder="Your name">
+  <textarea id="msg" rows="5" placeholder="Your message"></textarea>
+  <button onclick="sendWA()">Send Message</button>
+</div>
+
+<script>
+function sendWA(){
+  let name=document.getElementById("name").value||"Customer";
+  let msg=document.getElementById("msg").value;
+  if(msg.trim()===""){alert("Write a message");return;}
+  let text=`Contact Message:%0AName: ${name}%0AMessage: ${msg}`;
+  window.open("https://wa.me/8801989615778?text="+encodeURIComponent(text),"_blank");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Yamin Electric Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
+body{background:#d4af37}
+
+/* NAVBAR */
+nav{
+  background:#000;
+  padding:15px;
+}
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  color:#d4af37;
+  font-size:22px;
+  font-weight:bold;
+}
+nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+nav ul li a{
+  color:#d4af37;
+  text-decoration:none;
+  font-size:14px;
+}
+nav ul li a:hover{
+  text-decoration:underline;
+}
+
+/* HOME */
+.home{
+  max-width:1200px;
+  margin:auto;
+  padding:30px;
+}
+.images{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.img-box{
+  flex:1;
+  min-height:220px;
+  background:#fff;
+  border:2px dashed #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.about{
+  margin-top:20px;
+  background:#fff;
+  padding:20px;
+}
+.about textarea{
+  width:100%;
+  height:120px;
+  padding:10px;
+}
+
+/* PRODUCT */
+.product{
+  margin-top:30px;
+  background:#fff;
+  padding:15px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+.product-img{
+  width:120px;
+  height:120px;
+  border:2px dashed #999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.order-btn{
+  background:#000;
+  color:#d4af37;
+  padding:10px 15px;
+  text-decoration:none;
+}
+.order-btn:hover{opacity:0.8}
+
+/* FOOTER */
+footer{
+  background:#000;
+  color:#d4af37;
+  text-align:center;
+  padding:15px;
+  margin-top:40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .images{flex-direction:column;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-container">
+    <div class="logo">Yamin Electric Store</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="bulb.html">Bulb</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="accessories.html">Accessories</a></li>
+      <li><a href="cold-hot-item.html">Cold & Hot</a></li>
+      <li><a href="higher-product.html">Higher Product</a></li>
+      <li><a href="manual-gear.html">Manual Gear</a></li>
+      <li><a href="bell.html">Bell</a></li>
+      <li><a href="rechargeable.html">Rechargeable</a></li>
+      <li><a href="other.html">Other</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="product">
+    <div class="img">Bulb Image</div>
+    <div>
+      <h3>LED Bulb 12W</h3>
+      <p>Price: 350 TK</p>
+
+      <div class="color">
+        Color:
+        <span onclick="c='White'">White</span>
+        <span onclick="c='Warm'">Warm</span>
+      </div>
+
+      <div class="qty">
+        <button onclick="q=Math.max(1,--q);qty.innerText=q">-</button>
+        <span id="qty">1</span>
+        <button onclick="q++;qty.innerText=q">+</button>
+      </div>
+
+      <button class="order" onclick="go()">Order Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let q=1,c="White";
+function go(){
+location.href=`order.html?product=LED Bulb 12W&price=350&color=${c}&qty=${q}`;
+}
+</script>
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,11 +38,16 @@ nav{background:#000}
   padding:15px;
   border-radius:5px;
 }
+
+/* ✅ IMAGE SIZE FIX (NO CROP) */
 .card img{
   width:100%;
-  height:180px;
-  object-fit:cover;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  display:block;
 }
+
 .card h3{margin:10px 0}
 .card p{margin:5px 0}
 
@@ -68,7 +74,6 @@ nav{background:#000}
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <div class="nav">
     <div class="logo">Yamin Electric Store</div>
@@ -87,18 +92,13 @@ nav{background:#000}
   </div>
 </nav>
 
-<!-- PRODUCTS -->
 <div class="container">
 
-<!-- PRODUCT 1 -->
 <div class="card">
-  <img src="bulb1.jpg">
-  <h3>LED Bulb 12W</h3>
-  <p>Price: 120 TK</p>
-  <select id="c1">
-    <option>White</option>
-    <option>Warm</option>
-  </select>
+  <img src="ssgo5.jpg">
+  <h3>SSG orlee 5 watt LED Bulb</h3>
+  <p>Price: 150 TK</p>
+  <select id="c1"><option>White</option></select>
   <div class="qty">
     <button onclick="dec(1)">-</button>
     <span id="q1">1</span>
@@ -107,11 +107,10 @@ nav{background:#000}
   <button class="order" onclick="add('LED Bulb 12W',120,'c1','q1')">Order Now</button>
 </div>
 
-<!-- PRODUCT 2 -->
 <div class="card">
-  <img src="bulb2.jpg">
-  <h3>LED Bulb 15W</h3>
-  <p>Price: 150 TK</p>
+  <img src="ssgr7.jpg">
+  <h3>SSG Roots 7 watt LED Bulb</h3>
+  <p>Price: 190 TK</p>
   <select id="c2"><option>White</option></select>
   <div class="qty">
     <button onclick="dec(2)">-</button>
@@ -121,12 +120,11 @@ nav{background:#000}
   <button class="order" onclick="add('LED Bulb 15W',150,'c2','q2')">Order Now</button>
 </div>
 
-<!-- PRODUCT 3 -->
 <div class="card">
-  <img src="bulb3.jpg">
-  <h3>Smart Bulb</h3>
-  <p>Price: 450 TK</p>
-  <select id="c3"><option>RGB</option></select>
+  <img src="ssgo15.jpg">
+  <h3>SSG orlee 15 watt LED Bulb</h3>
+  <p>Price: 320 TK</p>
+  <select id="c3"><option>White</option></select>
   <div class="qty">
     <button onclick="dec(3)">-</button>
     <span id="q3">1</span>
@@ -135,11 +133,10 @@ nav{background:#000}
   <button class="order" onclick="add('Smart Bulb',450,'c3','q3')">Order Now</button>
 </div>
 
-<!-- PRODUCT 4 -->
 <div class="card">
-  <img src="bulb4.jpg">
-  <h3>Emergency Bulb</h3>
-  <p>Price: 600 TK</p>
+  <img src="ssgo5.jpg">
+  <h3>SSG orlee 5 watt LED Bulb</h3>
+  <p>Price: 380 TK</p>
   <select id="c4"><option>White</option></select>
   <div class="qty">
     <button onclick="dec(4)">-</button>
@@ -149,12 +146,11 @@ nav{background:#000}
   <button class="order" onclick="add('Emergency Bulb',600,'c4','q4')">Order Now</button>
 </div>
 
-<!-- PRODUCT 5 -->
 <div class="card">
-  <img src="bulb5.jpg">
-  <h3>Night Lamp</h3>
-  <p>Price: 200 TK</p>
-  <select id="c5"><option>Yellow</option></select>
+  <img src="ssgr15.jpg">
+  <h3>SSG roots 15 watt LED Bulb</h3>
+  <p>Price: 320 TK</p>
+  <select id="c5"><option>White</option></select>
   <div class="qty">
     <button onclick="dec(5)">-</button>
     <span id="q5">1</span>
@@ -191,37 +187,3 @@ function add(name,price,cid,qid){
 </body>
 </html>
 
-
-<div class="container">
-  <div class="product">
-    <div class="img">Bulb Image</div>
-    <div>
-      <h3>LED Bulb 12W</h3>
-      <p>Price: 350 TK</p>
-
-      <div class="color">
-        Color:
-        <span onclick="c='White'">White</span>
-        <span onclick="c='Warm'">Warm</span>
-      </div>
-
-      <div class="qty">
-        <button onclick="q=Math.max(1,--q);qty.innerText=q">-</button>
-        <span id="qty">1</span>
-        <button onclick="q++;qty.innerText=q">+</button>
-      </div>
-
-      <button class="order" onclick="go()">Order Now</button>
-    </div>
-  </div>
-</div>
-
-<script>
-let q=1,c="White";
-function go(){
-location.href=`order.html?product=LED Bulb 12W&price=350&color=${c}&qty=${q}`;
-}
-</script>
-
-</body>
-</html>

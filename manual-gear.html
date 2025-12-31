@@ -1,174 +1,189 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home | Yamin Electric Store</title>
+<title>Bulb | Yamin Electric Store</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-
 body{background:#d4af37}
 
 /* NAVBAR */
-nav{
-  background:#000;
+nav{background:#000}
+.nav{
+  max-width:1300px;
+  margin:auto;
   padding:15px;
-}
-.nav-container{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-}
-.logo{
-  color:#d4af37;
-  font-size:22px;
-  font-weight:bold;
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-nav ul li a{
-  color:#d4af37;
-  text-decoration:none;
-  font-size:14px;
-}
-nav ul li a:hover{
-  text-decoration:underline;
-}
-
-/* HOME */
-.home{
-  max-width:1200px;
-  margin:auto;
-  padding:30px;
-}
-.images{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-.img-box{
-  flex:1;
-  min-height:220px;
-  background:#fff;
-  border:2px dashed #000;
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
 }
-.about{
-  margin-top:20px;
-  background:#fff;
-  padding:20px;
-}
-.about textarea{
-  width:100%;
-  height:120px;
-  padding:10px;
-}
+.logo{color:#d4af37;font-weight:bold;font-size:20px}
+.nav a{color:#d4af37;text-decoration:none;font-size:14px}
+.nav a:hover{text-decoration:underline}
 
 /* PRODUCT */
-.product{
-  margin-top:30px;
+.container{
+  max-width:1200px;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.card{
   background:#fff;
   padding:15px;
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-.product-img{
-  width:120px;
-  height:120px;
-  border:2px dashed #999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.order-btn{
-  background:#000;
-  color:#d4af37;
-  padding:10px 15px;
-  text-decoration:none;
-}
-.order-btn:hover{opacity:0.8}
-
-/* FOOTER */
-footer{
-  background:#000;
-  color:#d4af37;
-  text-align:center;
-  padding:15px;
-  margin-top:40px;
+  border-radius:5px;
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .images{flex-direction:column;}
+/* ✅ IMAGE SIZE FIX (NO CROP) */
+.card img{
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  display:block;
+}
+
+.card h3{margin:10px 0}
+.card p{margin:5px 0}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:10px 0;
+}
+.qty button{
+  width:30px;
+  height:30px;
+}
+.order{
+  width:100%;
+  padding:10px;
+  background:#000;
+  color:#d4af37;
+  border:none;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
-  <div class="nav-container">
+  <div class="nav">
     <div class="logo">Yamin Electric Store</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="bulb.html">Bulb</a></li>
-      <li><a href="tools.html">Tools</a></li>
-      <li><a href="accessories.html">Accessories</a></li>
-      <li><a href="cold-hot-item.html">Cold & Hot</a></li>
-      <li><a href="higher-product.html">Higher Product</a></li>
-      <li><a href="manual-gear.html">Manual Gear</a></li>
-      <li><a href="bell.html">Bell</a></li>
-      <li><a href="rechargeable.html">Rechargeable</a></li>
-      <li><a href="other.html">Other</a></li>
-      <li><a href="order.html">Order</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <a href="index.html">Home</a>
+    <a href="bulb.html">Bulb</a>
+    <a href="tools.html">Tools</a>
+    <a href="accessories.html">Accessories</a>
+    <a href="cold-hot-item.html">Cold & Hot</a>
+    <a href="higher-product.html">Higher Product</a>
+    <a href="manual-gear.html">Manual Gear</a>
+    <a href="bell.html">Bell</a>
+    <a href="rechargeable.html">Rechargeable</a>
+    <a href="other.html">Other</a>
+    <a href="order.html">Order</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-
 <div class="container">
-  <div class="product">
-    <div class="img">Bulb Image</div>
-    <div>
-      <h3>LED Bulb 12W</h3>
-      <p>Price: 350 TK</p>
 
-      <div class="color">
-        Color:
-        <span onclick="c='White'">White</span>
-        <span onclick="c='Warm'">Warm</span>
-      </div>
-
-      <div class="qty">
-        <button onclick="q=Math.max(1,--q);qty.innerText=q">-</button>
-        <span id="qty">1</span>
-        <button onclick="q++;qty.innerText=q">+</button>
-      </div>
-
-      <button class="order" onclick="go()">Order Now</button>
-    </div>
+<div class="card">
+  <img src="ssgo5.jpg">
+  <h3>SSG orlee 5 watt LED Bulb</h3>
+  <p>Price: 150 TK</p>
+  <select id="c1"><option>White</option></select>
+  <div class="qty">
+    <button onclick="dec(1)">-</button>
+    <span id="q1">1</span>
+    <button onclick="inc(1)">+</button>
   </div>
+  <button class="order" onclick="add('LED Bulb 12W',120,'c1','q1')">Order Now</button>
+</div>
+
+<div class="card">
+  <img src="ssgr7.jpg">
+  <h3>SSG Roots 7 watt LED Bulb</h3>
+  <p>Price: 190 TK</p>
+  <select id="c2"><option>White</option></select>
+  <div class="qty">
+    <button onclick="dec(2)">-</button>
+    <span id="q2">1</span>
+    <button onclick="inc(2)">+</button>
+  </div>
+  <button class="order" onclick="add('LED Bulb 15W',150,'c2','q2')">Order Now</button>
+</div>
+
+<div class="card">
+  <img src="ssgo15.jpg">
+  <h3>SSG orlee 15 watt LED Bulb</h3>
+  <p>Price: 320 TK</p>
+  <select id="c3"><option>White</option></select>
+  <div class="qty">
+    <button onclick="dec(3)">-</button>
+    <span id="q3">1</span>
+    <button onclick="inc(3)">+</button>
+  </div>
+  <button class="order" onclick="add('Smart Bulb',450,'c3','q3')">Order Now</button>
+</div>
+
+<div class="card">
+  <img src="ssgo5.jpg">
+  <h3>SSG orlee 5 watt LED Bulb</h3>
+  <p>Price: 380 TK</p>
+  <select id="c4"><option>White</option></select>
+  <div class="qty">
+    <button onclick="dec(4)">-</button>
+    <span id="q4">1</span>
+    <button onclick="inc(4)">+</button>
+  </div>
+  <button class="order" onclick="add('Emergency Bulb',600,'c4','q4')">Order Now</button>
+</div>
+
+<div class="card">
+  <img src="ssgr15.jpg">
+  <h3>SSG roots 15 watt LED Bulb</h3>
+  <p>Price: 320 TK</p>
+  <select id="c5"><option>White</option></select>
+  <div class="qty">
+    <button onclick="dec(5)">-</button>
+    <span id="q5">1</span>
+    <button onclick="inc(5)">+</button>
+  </div>
+  <button class="order" onclick="add('Night Lamp',200,'c5','q5')">Order Now</button>
+</div>
+
 </div>
 
 <script>
-let q=1,c="White";
-function go(){
-location.href=`order.html?product=LED Bulb 12W&price=350&color=${c}&qty=${q}`;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function inc(i){
+  let q=document.getElementById("q"+i);
+  q.innerText=parseInt(q.innerText)+1;
+}
+function dec(i){
+  let q=document.getElementById("q"+i);
+  if(q.innerText>1) q.innerText--;
+}
+function add(name,price,cid,qid){
+  cart.push({
+    product:name,
+    price:price,
+    color:document.getElementById(cid).value,
+    qty:document.getElementById(qid).innerText
+  });
+  localStorage.setItem("cart",JSON.stringify(cart));
+  alert("Added to Order");
 }
 </script>
 
 </body>
 </html>
+

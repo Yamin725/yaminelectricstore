@@ -1,5 +1,5 @@
-```html
-<!-- ===== FIXED order.html (PRODUCT NAME EXACT AS BULB PAGE) ===== -->
+html
+<!-- ===== FIXED order.html ===== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,13 +19,14 @@ nav{background:#000}
   padding:15px;
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:14px;
   flex-wrap:wrap;
 }
 .logo{
   color:#d4af37;
   font-size:20px;
   font-weight:bold;
+  margin-right:10px;
 }
 .nav a{
   color:#d4af37;
@@ -45,14 +46,14 @@ h2{text-align:center;margin-bottom:20px}
 .cart-item{
   border:1px solid #ccc;
   padding:15px;
-  margin-bottom:15px
+  margin-bottom:15px;
 }
 .remove{
   background:red;
   color:#fff;
   border:none;
   padding:6px 10px;
-  cursor:pointer
+  cursor:pointer;
 }
 .submit{
   width:100%;
@@ -61,7 +62,7 @@ h2{text-align:center;margin-bottom:20px}
   color:#d4af37;
   border:none;
   font-size:16px;
-  cursor:pointer
+  cursor:pointer;
 }
 </style>
 </head>
@@ -96,40 +97,47 @@ h2{text-align:center;margin-bottom:20px}
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function render(){
-  const box=document.getElementById("cart");
-  box.innerHTML="";
-  if(cart.length===0){
-    box.innerHTML="<p style='text-align:center'>Cart empty</p>";
+  const box = document.getElementById("cart");
+  box.innerHTML = "";
+  if(cart.length === 0){
+    box.innerHTML = "Cart empty";
     return;
   }
-  cart.forEach((i,x)=>{
-    box.innerHTML+=`
+
+  cart.forEach((item,index)=>{
+    box.innerHTML += `
     <div class="cart-item">
-      <p><b>Product:</b> ${i.product}</p>
-      <p><b>Price:</b> ${i.price} TK</p>
-      <p><b>Color:</b> ${i.color}</p>
-      <p><b>Quantity:</b> ${i.qty}</p>
-      <button class="remove" onclick="removeItem(${x})">Remove</button>
-    </div>`;
+      <p><b>Product:</b> ${item.name}</p>
+      <p><b>Price:</b> ${item.price} TK</p>
+      <p><b>Color:</b> ${item.color}</p>
+      <p><b>Quantity:</b> ${item.qty}</p>
+      <button class="remove" onclick="removeItem(${index})">Remove</button>
+    </div>
+    `;
   });
 }
 
 function removeItem(i){
   cart.splice(i,1);
-  localStorage.setItem("cart",JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(cart));
   render();
 }
 
 function sendWA(){
-  if(cart.length===0){
-    alert("Cart empty");
-    return;
-  }
-  let msg="Order Details:%0A";
-  cart.forEach(i=>{
-    msg+=`Product: ${i.product}%0APrice: ${i.price} TK%0AColor: ${i.color}%0AQuantity: ${i.qty}%0A---%0A`;
+  if(cart.length === 0) return;
+
+  let msg = "Order Details:%0A";
+  cart.forEach(item=>{
+    msg += `Product: ${item.name}%0A`;
+    msg += `Price: ${item.price} TK%0A`;
+    msg += `Color: ${item.color}%0A`;
+    msg += `Quantity: ${item.qty}%0A---%0A`;
   });
-  window.open("https://wa.me/8801989615778?text="+msg,"_blank");
+
+  window.open(
+    "https://wa.me/8801989615778?text=" + msg,
+    "_blank"
+  );
 }
 
 render();
@@ -137,4 +145,4 @@ render();
 
 </body>
 </html>
-```
+

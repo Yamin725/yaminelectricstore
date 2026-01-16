@@ -40,6 +40,7 @@ nav{background:#000}
   background:#fff;
   padding:20px;
   border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
 }
 h2{text-align:center;margin-bottom:20px}
 
@@ -48,26 +49,31 @@ h2{text-align:center;margin-bottom:20px}
   padding: 15px;
   background: #f9f9f9;
   border: 1px solid #ddd;
+  border-radius: 5px;
 }
+.user-info h4 { margin-bottom: 10px; color: #333; }
 .user-info input {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 8px 0;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .cart-item{
   border:1px solid #ccc;
   padding:15px;
   margin-bottom:15px;
+  border-radius: 5px;
 }
 .remove{
   background:red;
   color:#fff;
   border:none;
-  padding:6px 10px;
+  padding:6px 12px;
   cursor:pointer;
   margin-top: 5px;
+  border-radius: 3px;
 }
 .submit{
   width:100%;
@@ -78,6 +84,8 @@ h2{text-align:center;margin-bottom:20px}
   font-size:18px;
   font-weight: bold;
   cursor:pointer;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 .submit:disabled {
   background: #555;
@@ -111,28 +119,32 @@ h2{text-align:center;margin-bottom:20px}
   
   <div class="user-info">
     <h4>Customer Details:</h4>
-    <input type="text" id="custName" placeholder="Full Name" required>
-    <input type="text" id="custPhone" placeholder="Phone Number" required>
+    <input type="text" id="custName" placeholder="আপনার পূর্ণ নাম লিখুন (Full Name)" required>
+    <input type="text" id="custPhone" placeholder="আপনার মোবাইল নম্বর (Phone Number)" required>
   </div>
 
   <div id="cart"></div>
-  <button class="submit" onclick="sendOrderToSheet()">Submit Order</button>
+  
+  <button id="submitBtn" class="submit" onclick="sendOrderToSheet()">Submit Order</button>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Cart Render Function
+// Function to Render Cart Items
 function render(){
   const box = document.getElementById("cart");
   box.innerHTML = "";
+  
   if(cart.length === 0){
-    box.innerHTML = "<p style='text-align:center; padding:20px;'>Your cart is empty.</p>";
+    box.innerHTML = "<p style='text-align:center; padding:20px;'>আপনার কার্টটি এখন খালি।</p>";
+    document.getElementById("submitBtn").style.display = "none";
     return;
   }
 
-  cart.forEach((item,index)=>{
-    // Supporting both 'name' or 'product' keys for compatibility
+  document.getElementById("submitBtn").style.display = "block";
+
+  cart.forEach((item, index) => {
     let pName = item.product || item.name; 
     box.innerHTML += `
     <div class="cart-item">
@@ -152,53 +164,57 @@ function removeItem(i){
   render();
 }
 
-// Google Sheets Order Function
+// Function to Send Data to Google Sheets
 async function sendOrderToSheet() {
-  const name = document.getElementById("custName").value;
-  const phone = document.getElementById("custPhone").value;
+  const name = document.getElementById("custName").value.trim();
+  const phone = document.getElementById("custPhone").value.trim();
+  const btn = document.getElementById("submitBtn");
 
   if (cart.length === 0) {
-    alert("Your cart is empty!");
+    alert("আপনার কার্টে কোনো পণ্য নেই!");
     return;
   }
   if (!name || !phone) {
-    alert("Please enter your name and phone number.");
+    alert("অনুগ্রহ করে আপনার নাম এবং মোবাইল নম্বর দিন।");
     return;
   }
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycby1bUwdBRI2UWveD83wQJxqJhOVrSpk-lpWUxd5JMyszJOcwmhv29cRxpcXSI7pQ33G6g/exec';
-  const btn = document.querySelector(".submit");
+  // Your New Web App URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbykoP1ocBtrANtZ7WNWdA-34PITN84V-B9iALsyllJHa8MJN2wGZInLdnkVYIyp8R7kFA/exec';
   
   btn.innerText = "Processing Order...";
   btn.disabled = true;
 
-  // Prepare data for Google Sheet
-  const orderData = cart.map(item => ({
-    name: name,
-    phone: phone,
-    product: item.product || item.name,
-    price: item.price,
-    color: item.color,
-    qty: item.qty
-  }));
+  // Formatting products as a string
+  const productSummary = cart.map(item => 
+    `${item.product || item.name} (Qty: ${item.qty}, Color: ${item.color})`
+  ).join(" | ");
+
+  // Create FormData for Google Apps Script
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("phone", phone);
+  formData.append("products", productSummary);
 
   try {
+    // Sending the request
     await fetch(scriptURL, {
       method: 'POST',
-      body: JSON.stringify(orderData)
+      body: formData
     });
     
-    alert("Dhanyabad! Apnar order-ti sothikbhabe joma hoyeche.");
-    localStorage.removeItem("cart");
+    alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে জমা হয়েছে।");
+    localStorage.removeItem("cart"); // Clear cart after order
     window.location.reload();
   } catch (error) {
     console.error('Error!', error.message);
-    alert("Sorry, order pathate shomossha hoyeche. Abar cheshtha koro.");
+    alert("দুঃখিত, অর্ডার পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
     btn.innerText = "Submit Order";
     btn.disabled = false;
   }
 }
 
+// Initial Render
 render();
 </script>
 

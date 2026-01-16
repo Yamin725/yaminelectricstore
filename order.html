@@ -33,14 +33,29 @@ nav{background:#000}
 }
 .nav a:hover{text-decoration:underline}
 
-/* CART */
+/* CART & FORM */
 .container{
   max-width:900px;
   margin:30px auto;
   background:#fff;
   padding:20px;
+  border-radius: 8px;
 }
 h2{text-align:center;margin-bottom:20px}
+
+.user-info {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+}
+.user-info input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+}
+
 .cart-item{
   border:1px solid #ccc;
   padding:15px;
@@ -52,15 +67,21 @@ h2{text-align:center;margin-bottom:20px}
   border:none;
   padding:6px 10px;
   cursor:pointer;
+  margin-top: 5px;
 }
 .submit{
   width:100%;
-  padding:12px;
+  padding:15px;
   background:#000;
   color:#d4af37;
   border:none;
-  font-size:16px;
+  font-size:18px;
+  font-weight: bold;
   cursor:pointer;
+}
+.submit:disabled {
+  background: #555;
+  cursor: not-allowed;
 }
 </style>
 </head>
@@ -87,25 +108,35 @@ h2{text-align:center;margin-bottom:20px}
 
 <div class="container">
   <h2>Your Cart</h2>
+  
+  <div class="user-info">
+    <h4>Customer Details:</h4>
+    <input type="text" id="custName" placeholder="Full Name" required>
+    <input type="text" id="custPhone" placeholder="Phone Number" required>
+  </div>
+
   <div id="cart"></div>
-  <button class="submit" onclick="sendWA()">Submit Order</button>
+  <button class="submit" onclick="sendOrderToSheet()">Submit Order</button>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Cart Render Function
 function render(){
   const box = document.getElementById("cart");
   box.innerHTML = "";
   if(cart.length === 0){
-    box.innerHTML = "Cart empty";
+    box.innerHTML = "<p style='text-align:center; padding:20px;'>Your cart is empty.</p>";
     return;
   }
 
   cart.forEach((item,index)=>{
+    // Supporting both 'name' or 'product' keys for compatibility
+    let pName = item.product || item.name; 
     box.innerHTML += `
     <div class="cart-item">
-      <p><b>Product:</b> ${item.name}</p>
+      <p><b>Product:</b> ${pName}</p>
       <p><b>Price:</b> ${item.price} TK</p>
       <p><b>Color:</b> ${item.color}</p>
       <p><b>Quantity:</b> ${item.qty}</p>
@@ -121,21 +152,51 @@ function removeItem(i){
   render();
 }
 
-function sendWA(){
-  if(cart.length === 0) return;
+// Google Sheets Order Function
+async function sendOrderToSheet() {
+  const name = document.getElementById("custName").value;
+  const phone = document.getElementById("custPhone").value;
 
-  let msg = "Order Details:%0A";
-  cart.forEach(item=>{
-    msg += `Product: ${item.name}%0A`;
-    msg += `Price: ${item.price} TK%0A`;
-    msg += `Color: ${item.color}%0A`;
-    msg += `Quantity: ${item.qty}%0A---%0A`;
-  });
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  if (!name || !phone) {
+    alert("Please enter your name and phone number.");
+    return;
+  }
 
-  window.open(
-    "https://wa.me/8801989615778?text=" + msg,
-    "_blank"
-  );
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby1bUwdBRI2UWveD83wQJxqJhOVrSpk-lpWUxd5JMyszJOcwmhv29cRxpcXSI7pQ33G6g/exec';
+  const btn = document.querySelector(".submit");
+  
+  btn.innerText = "Processing Order...";
+  btn.disabled = true;
+
+  // Prepare data for Google Sheet
+  const orderData = cart.map(item => ({
+    name: name,
+    phone: phone,
+    product: item.product || item.name,
+    price: item.price,
+    color: item.color,
+    qty: item.qty
+  }));
+
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(orderData)
+    });
+    
+    alert("Dhanyabad! Apnar order-ti sothikbhabe joma hoyeche.");
+    localStorage.removeItem("cart");
+    window.location.reload();
+  } catch (error) {
+    console.error('Error!', error.message);
+    alert("Sorry, order pathate shomossha hoyeche. Abar cheshtha koro.");
+    btn.innerText = "Submit Order";
+    btn.disabled = false;
+  }
 }
 
 render();
@@ -143,4 +204,3 @@ render();
 
 </body>
 </html>
-

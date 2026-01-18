@@ -43,72 +43,68 @@ nav ul li a:hover{
   text-decoration:underline;
 }
 
-/* HOME */
+/* HOME CONTENT */
 .home{
   max-width:1200px;
   margin:auto;
   padding:30px;
 }
-.images{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-.img-box, .video-box {
-  flex:1;
-  min-height:220px;
+
+/* IMAGE BOX SECTION */
+.img-container {
+  width: 100%;
+  max-width: 600px; /* ছবির সাইজ নিয়ন্ত্রণ করতে */
+  margin: 0 auto 20px auto;
   background:#fff;
   border:2px dashed #000;
+  height: 300px;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow: hidden; /* Jate image ba video box-er baire na jay */
+  overflow: hidden;
 }
-.img-box img {
+.img-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Image-ke box-er sathe fit korbe */
+  object-fit: cover;
 }
-.video-box video {
+
+/* ABOUT BOX SECTION */
+.about-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  border: 1px solid #000;
+}
+.about-box h2 {
+  margin-bottom: 15px;
+  color: #000;
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+}
+.about-text {
   width: 100%;
-  height: 100%;
+  min-height: 150px;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  white-space: pre-line; /* লাইন ব্রেক ঠিক রাখার জন্য */
 }
 
-.about{
-  margin-top:20px;
-  background:#fff;
-  padding:20px;
+.contact-info {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+  background: #000;
+  color: #d4af37;
 }
-.about textarea{
-  width:100%;
-  height:120px;
-  padding:10px;
-}
-
-/* PRODUCT */
-.product{
-  margin-top:30px;
-  background:#fff;
-  padding:15px;
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-.product-img{
-  width:120px;
-  height:120px;
-  border:2px dashed #999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.order-btn{
-  background:#000;
-  color:#d4af37;
-  padding:10px 15px;
-  text-decoration:none;
-}
-.order-btn:hover{opacity:0.8}
 
 /* FOOTER */
 footer{
@@ -117,11 +113,6 @@ footer{
   text-align:center;
   padding:15px;
   margin-top:40px;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .images{flex-direction:column;}
 }
 </style>
 </head>
@@ -150,17 +141,22 @@ footer{
 
 <section class="home">
 
-  <div class="images">
-    <div class="img-box">
-        <img src="yes.jpeg" alt="Yamin Electric Store Image">
-    </div>
+  <div class="img-container">
+    <img src="yes.jpeg" alt="Yamin Electric Store Image">
+  </div>
     
-        <h2>About Our Store</h2>
-    <textarea placeholder="আসসালামু আলাইকুম। আমরা হলাম ইয়ামিন ইলেকট্রিক স্টোর-এর অনলাইন প্রতিনিধি। দীর্ঘ ১৭ বছর ধরে আপনাদের বিশ্বাসে তৈরি আজকের ইয়ামিন ইলেকট্রিক। যেহেতু আজ অনেকেই আমাদের থেকে দূরে আছেন কিন্তু আমাদের সেবা পেতে চান, তাদের জন্য খোলা হয়েছে ইয়ামিন ইলেকট্রিক অনলাইন প্ল্যাটফর্ম। দোকানের মতোই অত্যন্ত কম দামে আমরা অনলাইনেও সেবা দিচ্ছি।
+  <div class="about-box">
+    <h2>About Our Store</h2>
+    <div class="about-text">
+      আসসালামু আলাইকুম। আমরা হলাম ইয়ামিন ইলেকট্রিক স্টোর-এর অনলাইন প্রতিনিধি। দীর্ঘ ১৭ বছর ধরে আপনাদের বিশ্বাসে তৈরি আজকের ইয়ামিন ইলেকট্রিক। যেহেতু আজ অনেকেই আমাদের থেকে দূরে আছেন কিন্তু আমাদের সেবা পেতে চান, তাদের জন্য খোলা হয়েছে ইয়ামিন ইলেকট্রিক অনলাইন প্ল্যাটফর্ম। দোকানের মতোই অত্যন্ত কম দামে আমরা অনলাইনেও সেবা দিচ্ছি। 
 
-আজ ইয়ামিন ইলেকট্রিক স্টোর শুধু একটা ব্যবসায়িক প্রতিষ্ঠানই নয়, হয়ে উঠেছে হাজারো মানুষের বিশ্বাসের কেন্দ্রবিন্দু। আর সেই সম্মান মাথায় রেখেই আজকের ইয়ামিন ইলেকট্রিক স্টোর অনলাইন প্ল্যাটফর্ম। আমরা আমাদের সকল গ্রাহকদের সার্বিক মঙ্গল কামনা করছি।"></textarea>
+      আজ ইয়ামিন ইলেকট্রিক স্টোর শুধু একটা ব্যবসায়িক প্রতিষ্ঠানই নয়, হয়ে উঠেছে হাজারো মানুষের বিশ্বাসের কেন্দ্রবিন্দু। আর সেই সম্মান মাথায় রেখেই আজকের ইয়ামিন ইলেকট্রিক স্টোর অনলাইন প্ল্যাটফর্ম। আমরা আমাদের সকল গ্রাহকদের সার্বিক মঙ্গল কামনা করছি।
+    </div>
   </div>
 
+  <div class="contact-info">
+    For Details or Contact: 01989615778 | Email: yaminh888@gmail.com
+  </div>
   
 </section>
 

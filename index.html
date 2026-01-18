@@ -47,30 +47,34 @@ nav ul li a:hover{
 .home{
   max-width:1200px;
   margin:auto;
-  padding:30px;
+  padding:20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* IMAGE BOX SECTION */
 .img-container {
   width: 100%;
-  max-width: 600px; /* ছবির সাইজ নিয়ন্ত্রণ করতে */
-  margin: 0 auto 20px auto;
+  max-width: 600px; /* আপনার প্রয়োজন মতো এই সাইজ পরিবর্তন করতে পারেন */
+  margin-bottom: 20px;
   background:#fff;
-  border:2px dashed #000;
-  height: 300px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  border: 2px solid #000;
+  border-radius: 8px;
   overflow: hidden;
+  line-height: 0; /* ইমেজের নিচের বাড়তি গ্যাপ কমানোর জন্য */
 }
 .img-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain; /* এই প্রোপার্টিটি ছবিকে ক্রপ হতে দিবে না, পুরো ছবি দেখাবে */
 }
 
 /* ABOUT BOX SECTION */
 .about-box {
+  width: 100%;
+  max-width: 800px;
   background: #fff;
   padding: 25px;
   border-radius: 8px;
@@ -81,29 +85,30 @@ nav ul li a:hover{
 .about-box h2 {
   margin-bottom: 15px;
   color: #000;
-  border-bottom: 2px solid #d4af37;
+  border-bottom: 3px solid #d4af37;
   display: inline-block;
+  font-size: 24px;
 }
 .about-text {
-  width: 100%;
-  min-height: 150px;
-  padding: 15px;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  white-space: pre-line; /* লাইন ব্রেক ঠিক রাখার জন্য */
+  font-size: 17px;
+  line-height: 1.8;
+  color: #222;
+  white-space: pre-line;
+  text-align: justify;
 }
 
+/* CONTACT INFO */
 .contact-info {
   text-align: center;
   font-weight: bold;
-  margin-top: 20px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 15px;
   background: #000;
   color: #d4af37;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 /* FOOTER */

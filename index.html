@@ -56,19 +56,19 @@ nav ul li a:hover{
 /* IMAGE BOX SECTION */
 .img-container {
   width: 100%;
-  max-width: 600px; /* আপনার প্রয়োজন মতো এই সাইজ পরিবর্তন করতে পারেন */
+  max-width: 600px;
   margin-bottom: 20px;
   background:#fff;
   border: 2px solid #000;
   border-radius: 8px;
   overflow: hidden;
-  line-height: 0; /* ইমেজের নিচের বাড়তি গ্যাপ কমানোর জন্য */
+  line-height: 0;
 }
 .img-container img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: contain; /* এই প্রোপার্টিটি ছবিকে ক্রপ হতে দিবে না, পুরো ছবি দেখাবে */
+  object-fit: contain;
 }
 
 /* ABOUT BOX SECTION */
@@ -96,6 +96,40 @@ nav ul li a:hover{
   white-space: pre-line;
   text-align: justify;
 }
+
+/* --- NEW OFFER SECTION START --- */
+.offer-section {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.offer-section h2 {
+  margin-bottom: 20px;
+  color: #000;
+  border-bottom: 3px solid #d4af37;
+  display: inline-block;
+  font-size: 24px;
+}
+.offer-images {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap; /* ছোট স্ক্রিনে ছবিগুলো একটির নিচে আরেকটি আসবে */
+}
+.offer-images img {
+  width: calc(50% - 10px); /* ২টা ছবি পাশাপাশি রাখার জন্য */
+  min-width: 280px; /* মোবাইলে যেন বেশি ছোট না হয়ে যায় */
+  height: auto;
+  border: 2px solid #d4af37;
+  border-radius: 5px;
+  object-fit: cover;
+}
+/* --- NEW OFFER SECTION END --- */
 
 /* CONTACT INFO */
 .contact-info {
@@ -157,6 +191,12 @@ footer{
 
       আজ ইয়ামিন ইলেকট্রিক স্টোর শুধু একটা ব্যবসায়িক প্রতিষ্ঠানই নয়, হয়ে উঠেছে হাজারো মানুষের বিশ্বাসের কেন্দ্রবিন্দু। আর সেই সম্মান মাথায় রেখেই আজকের ইয়ামিন ইলেকট্রিক স্টোর অনলাইন প্ল্যাটফর্ম। আমরা আমাদের সকল গ্রাহকদের সার্বিক মঙ্গল কামনা করছি।
     </div>
+  </div>
+
+  <div class="offer-section">
+    <h2>Our Running Offers</h2>
+    <div class="offer-images">
+      <img src="offer1.jpg" alt="Offer 1"> <img src="offer2.jpg" alt="Offer 2"> </div>
   </div>
 
   <div class="contact-info">
